@@ -1,0 +1,54 @@
+Create animation file in res/anim folder  "item_animation_bottom_to_up"
+
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@integer/anim_duration_long">
+
+    <translate
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:fromYDelta="50%p"
+        android:toYDelta="0"
+        />
+
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        />
+
+</set>
+
+Create animation file in res/anim folder "layoutanimation_recyclerview"
+
+<?xml version="1.0" encoding="utf-8"?>
+<layoutAnimation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/item_animation_bottom_to_up"
+    android:delay="15%"
+    android:animationOrder="normal"
+    />
+    
+    
+    
+create integers file in values/integers
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="anim_duration_medium">300</integer>
+    <integer name="anim_duration_long">400</integer>
+</resources>
+
+
+add below line in your actvity layout xml file in recyclerview
+
+ android:layoutAnimation="@anim/layout_animation_from_bottom"
+
+
+add below line in your code file
+
+ final LayoutAnimationController controller =
+  AnimationUtils.loadLayoutAnimation(getActivity(), R.anim.layout_animation_from_bottom);
+
+  recycler_view.setLayoutAnimation(controller);
+  recycler_view.getAdapter().notifyDataSetChanged();
+  recycler_view.scheduleLayoutAnimation();
